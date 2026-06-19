@@ -4,6 +4,9 @@ import logo from "./assets/logoshsmarsistemas.fundotransparente.png";
 import heroBg from "./assets/hero-background.png";
 import andersonPhoto from "./assets/anderson-jordao.png";
 import gustavoPhoto from "./assets/gustavo-henrique.png";
+import shamarIgrejasCard from "./assets/shamar-igrejas-card.jpg";
+import shamarProntuariosCard from "./assets/shamar-prontuarios-card.png";
+import shamarEmpresasCard from "./assets/shamar-empresas-card.jpg";
 
 const whatsappUrl = "https://wa.me/5513996387593";
 const instagramUrl =
@@ -43,22 +46,28 @@ const solutions = [
     description:
       "Gestão financeira, membros, relatórios, departamentos e congregações em uma única plataforma.",
     icon: "church",
+    image: shamarIgrejasCard,
     href: igrejasUrl,
     action: "Acessar sistema",
+    status: "Em desenvolvimento",
   },
   {
     title: "Shamar Prontuários",
     description:
       "Prontuário eletrônico com fluxo completo para recepção, enfermagem, triagem, atendimento médico e receituário.",
     icon: "health",
+    image: shamarProntuariosCard,
     href: prontuariosUrl,
     action: "Acessar sistema",
+    status: "Em desenvolvimento",
   },
   {
     title: "Shamar Empresas",
     description: "Solução de gestão empresarial para pequenos e médios negócios.",
     icon: "business",
+    image: shamarEmpresasCard,
     action: "Em breve",
+    status: "Em breve",
     disabled: true,
   },
 ];
@@ -151,6 +160,52 @@ const SolutionAction = ({ solution }) => {
   );
 };
 
+const ClientSystemCard = ({ solution }) => {
+  const content = (
+    <>
+      <div className="aspect-[4/3] overflow-hidden bg-slate-950">
+        <img
+          src={solution.image}
+          alt={solution.title}
+          className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+        />
+      </div>
+      <div className="flex flex-1 flex-col p-6">
+        {solution.status && (
+          <span className="mb-4 inline-flex w-fit rounded-full border border-cyan-200 bg-cyan-50 px-3 py-1 text-xs font-extrabold uppercase tracking-[0.14em] text-blue-700">
+            {solution.status}
+          </span>
+        )}
+        <h2 className="text-xl font-extrabold text-slate-950">{solution.title}</h2>
+        <p className="mt-3 flex-1 text-sm leading-6 text-slate-600">{solution.description}</p>
+        <span
+          className={`mt-6 inline-flex h-11 items-center justify-center gap-2 rounded-lg px-5 text-sm font-bold transition ${
+            solution.disabled
+              ? "cursor-not-allowed border border-slate-200 bg-slate-100 text-slate-500"
+              : "bg-gradient-to-r from-blue-700 to-emerald-500 text-white shadow-lg shadow-blue-700/20 group-hover:shadow-xl"
+          }`}
+        >
+          {solution.disabled ? solution.action : "Entrar no sistema"}
+          {!solution.disabled && <ArrowIcon />}
+        </span>
+      </div>
+    </>
+  );
+
+  const cardClass =
+    "group flex min-h-[360px] flex-col overflow-hidden rounded-xl border border-slate-200 bg-white shadow-xl shadow-blue-950/10 transition duration-300 hover:-translate-y-2 hover:border-cyan-200 hover:shadow-2xl hover:shadow-cyan-950/20";
+
+  if (solution.disabled) {
+    return <div className={cardClass}>{content}</div>;
+  }
+
+  return (
+    <a href={solution.href} target="_blank" rel="noopener noreferrer" className={cardClass}>
+      {content}
+    </a>
+  );
+};
+
 const ClientArea = ({ onBack }) => (
   <div className="min-h-screen overflow-x-hidden bg-slate-50 text-slate-900">
     <header className="sticky top-0 z-50 border-b border-slate-200 bg-white/95 backdrop-blur-xl">
@@ -187,56 +242,9 @@ const ClientArea = ({ onBack }) => (
         </div>
 
         <div className="mt-10 grid gap-6 lg:grid-cols-3">
-          <a
-            href={igrejasUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group flex min-h-[250px] flex-col rounded-xl border border-slate-200 bg-white p-6 shadow-xl shadow-blue-950/10 transition hover:-translate-y-1 hover:border-cyan-200"
-          >
-            <div className="grid h-14 w-14 place-items-center rounded-full bg-gradient-to-br from-blue-50 to-emerald-50 text-blue-700 ring-1 ring-slate-200">
-              <Icon name="church" />
-            </div>
-            <h2 className="mt-6 text-xl font-extrabold text-slate-950">Shamar Igrejas</h2>
-            <p className="mt-3 flex-1 text-sm leading-6 text-slate-600">
-              Acesse sua plataforma de gestão de igrejas, membros, financeiro e relatórios.
-            </p>
-            <span className="mt-6 inline-flex h-11 items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-blue-700 to-emerald-500 px-5 text-sm font-bold text-white shadow-lg shadow-blue-700/20 transition group-hover:shadow-xl">
-              Entrar no sistema
-              <ArrowIcon />
-            </span>
-          </a>
-
-          <a
-            href={prontuariosUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group flex min-h-[250px] flex-col rounded-xl border border-slate-200 bg-white p-6 shadow-xl shadow-blue-950/10 transition hover:-translate-y-1 hover:border-cyan-200"
-          >
-            <div className="grid h-14 w-14 place-items-center rounded-full bg-gradient-to-br from-blue-50 to-emerald-50 text-blue-700 ring-1 ring-slate-200">
-              <Icon name="health" />
-            </div>
-            <h2 className="mt-6 text-xl font-extrabold text-slate-950">Shamar Prontuários</h2>
-            <p className="mt-3 flex-1 text-sm leading-6 text-slate-600">
-              Entre no sistema de prontuário eletrônico para clínicas e atendimentos.
-            </p>
-            <span className="mt-6 inline-flex h-11 items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-blue-700 to-emerald-500 px-5 text-sm font-bold text-white shadow-lg shadow-blue-700/20 transition group-hover:shadow-xl">
-              Entrar no sistema
-              <ArrowIcon />
-            </span>
-          </a>
-
-          <div className="flex min-h-[250px] flex-col rounded-xl border border-slate-200 bg-white p-6 shadow-xl shadow-blue-950/10">
-            <div className="grid h-14 w-14 place-items-center rounded-full bg-gradient-to-br from-blue-50 to-emerald-50 text-blue-700 ring-1 ring-slate-200">
-              <Icon name="business" />
-            </div>
-            <h2 className="mt-6 text-xl font-extrabold text-slate-950">Shamar Empresas</h2>
-            <p className="mt-3 flex-1 text-sm leading-6 text-slate-600">
-              Plataforma de gestão empresarial para pequenos e médios negócios.
-            </p>
-            <span className="mt-6 inline-flex h-11 cursor-not-allowed items-center justify-center rounded-lg border border-slate-200 bg-slate-100 px-5 text-sm font-bold text-slate-500">
-              Em breve
-            </span>
-          </div>
+          {solutions.map((solution) => (
+            <ClientSystemCard key={solution.title} solution={solution} />
+          ))}
         </div>
 
         <div className="mt-8 rounded-xl border border-slate-200 bg-white p-6 text-center shadow-lg shadow-slate-200/70">
@@ -481,16 +489,30 @@ export default function App() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, amount: 0.3 }}
                   transition={{ delay: index * 0.06 }}
-                  className="flex min-h-[300px] flex-col rounded-xl border border-slate-200 bg-white p-6 shadow-lg shadow-slate-200/70 transition hover:-translate-y-1 hover:border-cyan-200"
+                  className="group flex min-h-[360px] flex-col overflow-hidden rounded-xl border border-slate-200 bg-white shadow-lg shadow-slate-200/70 transition duration-300 hover:-translate-y-2 hover:border-cyan-200 hover:shadow-2xl hover:shadow-cyan-950/10"
                 >
-                  <div className="grid h-14 w-14 place-items-center rounded-full bg-gradient-to-br from-blue-50 to-emerald-50 text-blue-700 ring-1 ring-slate-200">
-                    <Icon name={solution.icon} />
+                  <div className="aspect-[4/3] overflow-hidden bg-slate-950">
+                    <img
+                      src={solution.image}
+                      alt={solution.title}
+                      className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+                    />
                   </div>
-                  <h3 className="mt-6 text-xl font-extrabold text-slate-950">{solution.title}</h3>
-                  <p className="mt-3 flex-1 text-sm leading-6 text-slate-600">
-                    {solution.description}
-                  </p>
-                  <SolutionAction solution={solution} />
+                  <div className="flex flex-1 flex-col p-6">
+                    {solution.status && (
+                      <span className="mb-4 inline-flex w-fit rounded-full border border-cyan-200 bg-cyan-50 px-3 py-1 text-xs font-extrabold uppercase tracking-[0.14em] text-blue-700">
+                        {solution.status}
+                      </span>
+                    )}
+                    <div className="grid h-12 w-12 place-items-center rounded-full bg-gradient-to-br from-blue-50 to-emerald-50 text-blue-700 ring-1 ring-slate-200">
+                      <Icon name={solution.icon} />
+                    </div>
+                    <h3 className="mt-5 text-xl font-extrabold text-slate-950">{solution.title}</h3>
+                    <p className="mt-3 flex-1 text-sm leading-6 text-slate-600">
+                      {solution.description}
+                    </p>
+                    <SolutionAction solution={solution} />
+                  </div>
                 </Motion.article>
               ))}
             </div>
