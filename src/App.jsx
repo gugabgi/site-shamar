@@ -1,11 +1,34 @@
 import { useState } from "react";
 import { motion as Motion } from "framer-motion";
-import logo from "./assets/logo.png";
+import logo from "./assets/logoshsmarsistemas.fundotransparente.png";
 import heroBg from "./assets/hero-background.png";
+import andersonPhoto from "./assets/anderson-jordao.png";
+import gustavoPhoto from "./assets/gustavo-henrique.png";
 
 const whatsappUrl = "https://wa.me/5513996387593";
+const instagramUrl =
+  "https://www.instagram.com/shamar_sistemas?igsh=dXY0YWoyc2x5OG5k&utm_source=qr";
 const igrejasUrl = "https://igrejas.shamarsistemas.com.br";
 const prontuariosUrl = "https://prontuarios.shamarsistemas.com.br";
+
+const contacts = [
+  {
+    name: "Anderson Jordão",
+    role: "Diretor Comercial",
+    phone: "13 99638 7593",
+    whatsapp: "https://wa.me/5513996387593",
+    email: "anderson@shamarsistemas.com.br",
+    photo: andersonPhoto,
+  },
+  {
+    name: "Gustavo Henrique",
+    role: "Diretor de Tecnologia",
+    phone: "13 95031 4723",
+    whatsapp: "https://wa.me/5513950314723",
+    email: "gustavo@shamarsistemas.com.br",
+    photo: gustavoPhoto,
+  },
+];
 
 const solutions = [
   {
@@ -223,11 +246,114 @@ const ClientArea = ({ onBack }) => (
   </div>
 );
 
+const ContactArea = ({ onBack }) => (
+  <div className="min-h-screen overflow-x-hidden bg-slate-50 text-slate-900">
+    <header className="sticky top-0 z-50 border-b border-slate-200 bg-white/95 backdrop-blur-xl">
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-2 md:px-8">
+        <button onClick={onBack} className="flex items-center" aria-label="Voltar para Shamar Sistemas">
+          <img src={logo} alt="Shamar Sistemas" className="h-10 w-auto object-contain md:h-12" />
+        </button>
+
+        <button
+          onClick={onBack}
+          className="inline-flex h-11 items-center justify-center rounded-lg border border-slate-200 bg-white px-5 text-sm font-bold text-slate-700 shadow-sm transition hover:-translate-y-0.5 hover:border-cyan-200 hover:text-blue-700"
+        >
+          Voltar ao site
+        </button>
+      </div>
+    </header>
+
+    <main className="relative isolate overflow-hidden px-5 py-14 md:px-8 md:py-20">
+      <div className="absolute inset-x-0 top-0 -z-10 h-[360px] bg-[#061633]" />
+      <div className="absolute inset-x-0 top-0 -z-10 h-[360px] bg-gradient-to-r from-blue-950 via-cyan-900 to-emerald-700 opacity-90" />
+
+      <section className="mx-auto max-w-5xl">
+        <div className="max-w-3xl text-white">
+          <p className="inline-flex rounded-full border border-cyan-300/30 bg-white/10 px-4 py-2 text-sm font-bold text-cyan-100 backdrop-blur">
+            Contato
+          </p>
+          <h1 className="mt-5 text-4xl font-black leading-tight md:text-5xl">
+            Fale com a Shamar Sistemas.
+          </h1>
+          <p className="mt-4 max-w-2xl text-base leading-7 text-slate-100 md:text-lg">
+            Tire dúvidas, solicite atendimento ou acompanhe nossas novidades pelos canais oficiais.
+          </p>
+        </div>
+
+        <div className="mt-10 grid gap-6 md:grid-cols-2">
+          {contacts.map((contact) => (
+            <article
+              key={contact.email}
+              className="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-xl shadow-blue-950/10"
+            >
+              <div className="aspect-[4/3] overflow-hidden bg-slate-900">
+                <img
+                  src={contact.photo}
+                  alt={contact.name}
+                  className="h-full w-full object-cover"
+                />
+              </div>
+              <div className="p-6">
+                <p className="text-sm font-extrabold uppercase tracking-[0.16em] text-blue-700">
+                  {contact.role}
+                </p>
+                <h2 className="mt-2 text-2xl font-black text-slate-950">{contact.name}</h2>
+
+                <div className="mt-5 space-y-2 text-sm font-semibold text-slate-600">
+                  <p>WhatsApp: {contact.phone}</p>
+                  <p>Email: {contact.email}</p>
+                </div>
+
+                <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+                  <a
+                    href={contact.whatsapp}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex h-11 flex-1 items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-emerald-600 to-cyan-500 px-5 text-sm font-bold text-white shadow-lg shadow-emerald-700/20 transition hover:-translate-y-0.5 hover:shadow-xl"
+                  >
+                    WhatsApp
+                    <ArrowIcon />
+                  </a>
+                  <a
+                    href={`mailto:${contact.email}`}
+                    className="inline-flex h-11 flex-1 items-center justify-center rounded-lg border border-slate-200 bg-white px-5 text-sm font-bold text-slate-700 transition hover:-translate-y-0.5 hover:border-cyan-200 hover:text-blue-700"
+                  >
+                    Enviar email
+                  </a>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+
+        <div className="mt-8 rounded-xl border border-slate-200 bg-white p-6 text-center shadow-lg shadow-slate-200/70">
+          <p className="text-sm font-semibold text-slate-600">
+            Acompanhe também a Shamar Sistemas no Instagram.
+          </p>
+          <a
+            href={instagramUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-4 inline-flex h-11 items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-blue-700 to-emerald-500 px-5 text-sm font-bold text-white shadow-lg shadow-blue-700/20 transition hover:-translate-y-0.5 hover:shadow-xl"
+          >
+            Abrir Instagram
+            <ArrowIcon />
+          </a>
+        </div>
+      </section>
+    </main>
+  </div>
+);
+
 export default function App() {
   const [screen, setScreen] = useState("home");
 
   if (screen === "client") {
     return <ClientArea onBack={() => setScreen("home")} />;
+  }
+
+  if (screen === "contact") {
+    return <ContactArea onBack={() => setScreen("home")} />;
   }
 
   return (
@@ -241,7 +367,9 @@ export default function App() {
           <nav className="hidden items-center gap-10 text-sm font-bold text-slate-700 md:flex">
             <a className="transition hover:text-blue-700" href="#solucoes">Soluções</a>
             <a className="transition hover:text-blue-700" href="#sobre">Sobre nós</a>
-            <a className="transition hover:text-blue-700" href="#contato">Contato</a>
+            <button className="font-bold transition hover:text-blue-700" onClick={() => setScreen("contact")}>
+              Contato
+            </button>
           </nav>
 
           <button
@@ -313,12 +441,12 @@ export default function App() {
                   <ArrowIcon />
                 </a>
 
-                <a
-                  href={whatsappUrl}
+                <button
+                  onClick={() => setScreen("contact")}
                   className="inline-flex h-12 items-center justify-center rounded-lg border border-white/35 bg-white/5 px-7 text-base font-bold text-white transition hover:bg-white hover:text-slate-950"
                 >
                   Falar com a Shamar
-                </a>
+                </button>
               </Motion.div>
             </div>
           </div>
@@ -426,8 +554,12 @@ export default function App() {
 
           <div className="text-sm leading-7 text-slate-600 md:text-right">
             <p className="font-extrabold text-slate-950">Contato:</p>
-            <p>(13) 99638-7593</p>
-            <p>@shamar_sistemas</p>
+            <a className="block transition hover:text-emerald-600" href={whatsappUrl} target="_blank" rel="noopener noreferrer">
+              (13) 99638-7593
+            </a>
+            <a className="block transition hover:text-blue-700" href={instagramUrl} target="_blank" rel="noopener noreferrer">
+              @shamar_sistemas
+            </a>
             <p>shamarsistemas.com.br</p>
           </div>
         </div>
