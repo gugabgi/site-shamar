@@ -284,13 +284,13 @@ const ContactArea = ({ onBack }) => (
           {contacts.map((contact) => (
             <article
               key={contact.email}
-              className="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-xl shadow-blue-950/10"
+              className="group overflow-hidden rounded-xl border border-slate-200 bg-white shadow-xl shadow-blue-950/10 transition duration-300 hover:-translate-y-2 hover:border-cyan-200 hover:shadow-2xl hover:shadow-cyan-950/20"
             >
               <div className="aspect-[4/3] overflow-hidden bg-slate-900">
                 <img
                   src={contact.photo}
                   alt={contact.name}
-                  className="h-full w-full object-cover"
+                  className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
                 />
               </div>
               <div className="p-6">
