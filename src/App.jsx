@@ -23,8 +23,8 @@ const contacts = [
   {
     name: "Gustavo Henrique",
     role: "Diretor de Tecnologia",
-    phone: "13 95031 4723",
-    whatsapp: "https://wa.me/5513950314723",
+    phone: "11 95031 4723",
+    whatsapp: "https://wa.me/5511950314723",
     email: "gustavo@shamarsistemas.com.br",
     photo: gustavoPhoto,
   },
