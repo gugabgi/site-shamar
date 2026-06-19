@@ -111,6 +111,8 @@ const SolutionAction = ({ solution }) => {
   return (
     <a
       href={solution.href}
+      target="_blank"
+      rel="noopener noreferrer"
       className="mt-6 inline-flex h-11 items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-blue-700 to-emerald-500 px-5 text-sm font-bold text-white shadow-lg shadow-blue-700/20 transition hover:-translate-y-0.5 hover:shadow-xl"
     >
       {solution.action}
@@ -157,6 +159,8 @@ const ClientArea = ({ onBack }) => (
         <div className="mt-10 grid gap-6 lg:grid-cols-3">
           <a
             href={igrejasUrl}
+            target="_blank"
+            rel="noopener noreferrer"
             className="group flex min-h-[250px] flex-col rounded-xl border border-slate-200 bg-white p-6 shadow-xl shadow-blue-950/10 transition hover:-translate-y-1 hover:border-cyan-200"
           >
             <div className="grid h-14 w-14 place-items-center rounded-full bg-gradient-to-br from-blue-50 to-emerald-50 text-blue-700 ring-1 ring-slate-200">
@@ -174,6 +178,8 @@ const ClientArea = ({ onBack }) => (
 
           <a
             href={prontuariosUrl}
+            target="_blank"
+            rel="noopener noreferrer"
             className="group flex min-h-[250px] flex-col rounded-xl border border-slate-200 bg-white p-6 shadow-xl shadow-blue-950/10 transition hover:-translate-y-1 hover:border-cyan-200"
           >
             <div className="grid h-14 w-14 place-items-center rounded-full bg-gradient-to-br from-blue-50 to-emerald-50 text-blue-700 ring-1 ring-slate-200">
@@ -387,6 +393,8 @@ export default function App() {
             <div className="mt-8 flex flex-col justify-center gap-4 sm:flex-row">
               <a
                 href={igrejasUrl}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex h-12 items-center justify-center gap-2 rounded-lg bg-white px-6 text-sm font-bold text-blue-800 transition hover:-translate-y-0.5 hover:bg-cyan-50"
               >
                 Entrar no Shamar Igrejas
@@ -394,6 +402,8 @@ export default function App() {
               </a>
               <a
                 href={prontuariosUrl}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex h-12 items-center justify-center gap-2 rounded-lg border border-white/35 px-6 text-sm font-bold text-white transition hover:-translate-y-0.5 hover:bg-white hover:text-slate-950"
               >
                 Entrar no Shamar Prontuários
