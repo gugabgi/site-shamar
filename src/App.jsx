@@ -30,6 +30,13 @@ const contacts = [
   },
 ];
 
+const buildEmailUrl = (email, name) => {
+  const subject = encodeURIComponent(`Contato pelo site - ${name}`);
+  const body = encodeURIComponent("Olá, gostaria de falar com a Shamar Sistemas.");
+
+  return `mailto:${email}?subject=${subject}&body=${body}`;
+};
+
 const solutions = [
   {
     title: "Shamar Igrejas",
@@ -315,7 +322,9 @@ const ContactArea = ({ onBack }) => (
                     <ArrowIcon />
                   </a>
                   <a
-                    href={`mailto:${contact.email}`}
+                    href={buildEmailUrl(contact.email, contact.name)}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="inline-flex h-11 flex-1 items-center justify-center rounded-lg border border-slate-200 bg-white px-5 text-sm font-bold text-slate-700 transition hover:-translate-y-0.5 hover:border-cyan-200 hover:text-blue-700"
                   >
                     Enviar email
