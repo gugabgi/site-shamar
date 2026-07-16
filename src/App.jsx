@@ -13,6 +13,7 @@ const instagramUrl =
   "https://www.instagram.com/shamar_sistemas?igsh=dXY0YWoyc2x5OG5k&utm_source=qr";
 const igrejasUrl = "https://igrejas.shamarsistemas.com.br";
 const prontuariosUrl = "https://prontuarios.shamarsistemas.com.br";
+const empresasUrl = "https://empresas.shamarsistemas.com.br/";
 
 const contacts = [
   {
@@ -66,9 +67,9 @@ const solutions = [
     description: "Solução de gestão empresarial para pequenos e médios negócios.",
     icon: "business",
     image: shamarEmpresasCard,
-    action: "Em breve",
-    status: "Em breve",
-    disabled: true,
+    href: empresasUrl,
+    action: "Acessar sistema",
+    status: "Em desenvolvimento",
   },
 ];
 
@@ -148,15 +149,10 @@ const SolutionAction = ({ solution }) => {
   }
 
   return (
-    <a
-      href={solution.href}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="mt-6 inline-flex h-11 items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-blue-700 to-emerald-500 px-5 text-sm font-bold text-white shadow-lg shadow-blue-700/20 transition hover:-translate-y-0.5 hover:shadow-xl"
-    >
+    <span className="mt-6 inline-flex h-11 items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-blue-700 to-emerald-500 px-5 text-sm font-bold text-white shadow-lg shadow-blue-700/20 transition group-hover:shadow-xl">
       {solution.action}
       <ArrowIcon />
-    </a>
+    </span>
   );
 };
 
@@ -482,39 +478,48 @@ export default function App() {
             </div>
 
             <div className="mt-10 grid gap-6 lg:grid-cols-3">
-              {solutions.map((solution, index) => (
-                <Motion.article
-                  key={solution.title}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.3 }}
-                  transition={{ delay: index * 0.06 }}
-                  className="group flex min-h-[360px] flex-col overflow-hidden rounded-xl border border-slate-200 bg-white shadow-lg shadow-slate-200/70 transition duration-300 hover:-translate-y-2 hover:border-cyan-200 hover:shadow-2xl hover:shadow-cyan-950/10"
-                >
-                  <div className="aspect-[4/3] overflow-hidden bg-slate-950">
-                    <img
-                      src={solution.image}
-                      alt={solution.title}
-                      className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
-                    />
-                  </div>
-                  <div className="flex flex-1 flex-col p-6">
-                    {solution.status && (
-                      <span className="mb-4 inline-flex w-fit rounded-full border border-cyan-200 bg-cyan-50 px-3 py-1 text-xs font-extrabold uppercase tracking-[0.14em] text-blue-700">
-                        {solution.status}
-                      </span>
-                    )}
-                    <div className="grid h-12 w-12 place-items-center rounded-full bg-gradient-to-br from-blue-50 to-emerald-50 text-blue-700 ring-1 ring-slate-200">
-                      <Icon name={solution.icon} />
+              {solutions.map((solution, index) => {
+                const Card = solution.disabled ? Motion.article : Motion.a;
+
+                return (
+                  <Card
+                    key={solution.title}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.3 }}
+                    transition={{ delay: index * 0.06 }}
+                    className="group flex min-h-[360px] flex-col overflow-hidden rounded-xl border border-slate-200 bg-white shadow-lg shadow-slate-200/70 transition duration-300 hover:-translate-y-2 hover:border-cyan-200 hover:shadow-2xl hover:shadow-cyan-950/10"
+                    {...(!solution.disabled && {
+                      href: solution.href,
+                      target: "_blank",
+                      rel: "noopener noreferrer",
+                    })}
+                  >
+                    <div className="aspect-[4/3] overflow-hidden bg-slate-950">
+                      <img
+                        src={solution.image}
+                        alt={solution.title}
+                        className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+                      />
                     </div>
-                    <h3 className="mt-5 text-xl font-extrabold text-slate-950">{solution.title}</h3>
-                    <p className="mt-3 flex-1 text-sm leading-6 text-slate-600">
-                      {solution.description}
-                    </p>
-                    <SolutionAction solution={solution} />
-                  </div>
-                </Motion.article>
-              ))}
+                    <div className="flex flex-1 flex-col p-6">
+                      {solution.status && (
+                        <span className="mb-4 inline-flex w-fit rounded-full border border-cyan-200 bg-cyan-50 px-3 py-1 text-xs font-extrabold uppercase tracking-[0.14em] text-blue-700">
+                          {solution.status}
+                        </span>
+                      )}
+                      <div className="grid h-12 w-12 place-items-center rounded-full bg-gradient-to-br from-blue-50 to-emerald-50 text-blue-700 ring-1 ring-slate-200">
+                        <Icon name={solution.icon} />
+                      </div>
+                      <h3 className="mt-5 text-xl font-extrabold text-slate-950">{solution.title}</h3>
+                      <p className="mt-3 flex-1 text-sm leading-6 text-slate-600">
+                        {solution.description}
+                      </p>
+                      <SolutionAction solution={solution} />
+                    </div>
+                  </Card>
+                );
+              })}
             </div>
           </div>
         </section>
