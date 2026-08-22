@@ -7,6 +7,8 @@ import gustavoPhoto from "./assets/gustavo-henrique.png";
 import shamarIgrejasCard from "./assets/shamar-igrejas-card.jpg";
 import shamarProntuariosCard from "./assets/shamar-prontuarios-card.png";
 import shamarEmpresasCard from "./assets/shamar-empresas-card.jpg";
+import { SiteFooter } from "./components/SiteChrome.jsx";
+import { AccountDeletionPage, PrivacyPolicyPage, TermsOfUsePage } from "./pages/ShamarIgrejasLegalPages.jsx";
 
 const whatsappUrl = "https://wa.me/5513996387593";
 const instagramUrl =
@@ -359,7 +361,20 @@ const ContactArea = ({ onBack }) => (
 );
 
 export default function App() {
+  const pathname = window.location.pathname.replace(/\/+$/, "") || "/";
   const [screen, setScreen] = useState("home");
+
+  if (pathname === "/shamar-igrejas/politica-de-privacidade") {
+    return <PrivacyPolicyPage />;
+  }
+
+  if (pathname === "/shamar-igrejas/exclusao-de-conta") {
+    return <AccountDeletionPage />;
+  }
+
+  if (pathname === "/shamar-igrejas/termos-de-uso") {
+    return <TermsOfUsePage />;
+  }
 
   if (screen === "client") {
     return <ClientArea onBack={() => setScreen("home")} />;
@@ -578,31 +593,7 @@ export default function App() {
         </section>
       </main>
 
-      <footer id="contato" className="border-t border-slate-200 bg-white px-5 py-10 md:px-8">
-        <div className="mx-auto flex max-w-7xl flex-col gap-8 md:flex-row md:items-end md:justify-between">
-          <div>
-            <img src={logo} alt="Shamar Sistemas" className="h-12 w-auto object-contain" />
-            <h2 className="mt-4 text-xl font-black text-slate-950">Shamar Sistemas</h2>
-            <p className="mt-2 text-sm font-semibold text-slate-600">
-              Tecnologia, transparência e propósito.
-            </p>
-          </div>
-
-          <div className="text-sm leading-7 text-slate-600 md:text-right">
-            <p className="font-extrabold text-slate-950">Contato:</p>
-            <a className="block transition hover:text-emerald-600" href={whatsappUrl} target="_blank" rel="noopener noreferrer">
-              (13) 99638-7593
-            </a>
-            <a className="block transition hover:text-blue-700" href={instagramUrl} target="_blank" rel="noopener noreferrer">
-              @shamar_sistemas
-            </a>
-            <p>shamarsistemas.com.br</p>
-          </div>
-        </div>
-        <div className="mx-auto mt-8 max-w-7xl border-t border-slate-200 pt-6 text-sm text-slate-500">
-          © 2026 Shamar Sistemas. Todos os direitos reservados.
-        </div>
-      </footer>
+      <SiteFooter />
     </div>
   );
 }
