@@ -1,3 +1,571 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color-scheme: light;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 88px;
+  overflow-x: hidden;
+}
+
+body {
+  margin: 0;
+  min-width: 0;
+  background: #031126;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button:focus-visible,
+a:focus-visible {
+  outline: 3px solid #22d3ee;
+  outline-offset: 3px;
+}
+
+.nav-link {
+  position: relative;
+  transition: color 180ms ease;
+}
+
+.glass-topbar {
+  position: relative;
+  isolation: isolate;
+  border: 1px solid rgba(125, 211, 252, 0.24);
+  background:
+    linear-gradient(105deg, rgba(17, 53, 94, 0.72), rgba(6, 24, 49, 0.79) 52%, rgba(8, 65, 77, 0.58));
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.13),
+    inset 0 -1px 0 rgba(14, 165, 233, 0.08),
+    0 18px 45px rgba(1, 10, 28, 0.28);
+  -webkit-backdrop-filter: blur(20px) saturate(145%);
+  backdrop-filter: blur(20px) saturate(145%);
+}
+
+.glass-topbar::before {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  pointer-events: none;
+  content: "";
+  background:
+    linear-gradient(115deg, rgba(255, 255, 255, 0.08), transparent 30%),
+    radial-gradient(circle at 72% -40%, rgba(37, 99, 235, 0.28), transparent 40%);
+}
+
+.glass-topbar::after {
+  position: absolute;
+  z-index: -1;
+  right: -32px;
+  width: 170px;
+  height: 120px;
+  pointer-events: none;
+  content: "";
+  background: rgba(16, 185, 129, 0.2);
+  filter: blur(34px);
+}
+
+.dark-brand-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.2rem;
+  height: 2.75rem;
+}
+
+.dark-brand-shield {
+  width: 2.35rem;
+  height: 2.35rem;
+  flex: 0 0 auto;
+  object-fit: contain;
+  filter: drop-shadow(0 0 10px rgba(34, 211, 238, 0.16));
+}
+
+.dark-brand-wordmark {
+  position: relative;
+  display: block;
+  width: 6.5rem;
+  height: 2.6rem;
+  overflow: hidden;
+}
+
+.dark-brand-wordmark img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 8rem;
+  max-width: none;
+  height: auto;
+  transform: translate(-50%, -50%);
+}
+
+.site-dark-bg {
+  position: relative;
+  background-color: #031126;
+  background-image:
+    radial-gradient(circle at 8% 18%, rgba(37, 99, 235, 0.13), transparent 28rem),
+    radial-gradient(circle at 94% 42%, rgba(16, 185, 129, 0.1), transparent 30rem),
+    linear-gradient(180deg, #05152f 0%, #031126 48%, #06172f 100%);
+}
+
+.dark-section {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 90% 20%, rgba(8, 145, 178, 0.07), transparent 26rem),
+    linear-gradient(180deg, rgba(4, 18, 41, 0.5), rgba(5, 23, 47, 0.74));
+}
+
+.brand-watermark {
+  position: absolute;
+  pointer-events: none;
+  user-select: none;
+  object-fit: contain;
+  filter: saturate(1.12) drop-shadow(0 0 34px rgba(6, 182, 212, 0.08));
+}
+
+.brand-watermark-hero {
+  z-index: -5;
+  right: -250px;
+  bottom: -330px;
+  width: 880px;
+  opacity: 0.055;
+  transform: rotate(-7deg);
+}
+
+.brand-watermark-page {
+  z-index: -5;
+  top: -210px;
+  right: -220px;
+  width: 760px;
+  opacity: 0.075;
+}
+
+.brand-watermark-section {
+  z-index: 0;
+  top: 48%;
+  right: -230px;
+  width: 760px;
+  opacity: 0.045;
+  transform: translateY(-50%) rotate(8deg);
+}
+
+.brand-watermark-wide {
+  z-index: 0;
+  top: 50%;
+  left: 50%;
+  width: min(1100px, 92vw);
+  opacity: 0.035;
+  transform: translate(-50%, -50%);
+}
+
+.brand-watermark-cta {
+  z-index: 0;
+  top: -190px;
+  right: -150px;
+  width: 560px;
+  opacity: 0.075;
+  transform: rotate(7deg);
+}
+
+.glass-card {
+  border: 1px solid rgba(125, 211, 252, 0.16);
+  background:
+    linear-gradient(145deg, rgba(20, 52, 91, 0.62), rgba(6, 25, 50, 0.74));
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    0 20px 55px rgba(0, 6, 20, 0.26);
+  -webkit-backdrop-filter: blur(18px) saturate(135%);
+  backdrop-filter: blur(18px) saturate(135%);
+}
+
+.glass-card:hover {
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.11),
+    0 26px 68px rgba(0, 8, 26, 0.4),
+    0 0 34px rgba(6, 182, 212, 0.06);
+}
+
+.product-shield-stage {
+  position: relative;
+  isolation: isolate;
+  background:
+    radial-gradient(circle at 50% 46%, rgba(14, 165, 233, 0.16), transparent 36%),
+    radial-gradient(circle at 58% 56%, rgba(16, 185, 129, 0.08), transparent 48%),
+    linear-gradient(145deg, #06152f, #020b1c 72%);
+}
+
+.product-shield-stage::before {
+  position: absolute;
+  z-index: 0;
+  inset: 14% 22%;
+  border-radius: 999px;
+  content: "";
+  background: linear-gradient(120deg, rgba(37, 99, 235, 0.2), rgba(6, 182, 212, 0.12), rgba(16, 185, 129, 0.18));
+  filter: blur(28px);
+}
+
+.product-shield-image {
+  position: relative;
+  z-index: 1;
+  filter: drop-shadow(0 18px 24px rgba(0, 0, 0, 0.34));
+}
+
+.church-showcase {
+  isolation: isolate;
+  border: 1px solid rgba(103, 232, 249, 0.34);
+  background:
+    linear-gradient(105deg, rgba(11, 43, 84, 0.94), rgba(4, 20, 44, 0.97) 52%, rgba(5, 66, 73, 0.86));
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.12),
+    0 34px 90px rgba(0, 7, 24, 0.38);
+}
+
+.church-showcase-watermark {
+  position: absolute;
+  z-index: 0;
+  top: -130px;
+  right: -120px;
+  width: 520px;
+  opacity: 0.055;
+  pointer-events: none;
+  transform: rotate(7deg);
+}
+
+.church-brand-wordmark {
+  position: relative;
+  display: block;
+  width: 10.5rem;
+  height: 3.1rem;
+  overflow: hidden;
+}
+
+.church-brand-wordmark img {
+  position: absolute;
+  top: 32%;
+  left: 50%;
+  width: 12.75rem;
+  max-width: none;
+  height: auto;
+  transform: translate(-50%, -50%);
+  filter: drop-shadow(0 0 10px rgba(34, 211, 238, 0.12));
+}
+
+.church-feature-card {
+  border: 1px solid rgba(125, 211, 252, 0.18);
+  background: linear-gradient(145deg, rgba(15, 47, 86, 0.76), rgba(4, 21, 44, 0.72));
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  transition: transform 240ms ease, border-color 240ms ease, background 240ms ease, box-shadow 240ms ease;
+}
+
+.church-features-carousel {
+  position: relative;
+  overflow: hidden;
+  padding-block: 0.45rem 0.8rem;
+  mask-image: linear-gradient(90deg, transparent, black 5%, black 95%, transparent);
+  -webkit-mask-image: linear-gradient(90deg, transparent, black 5%, black 95%, transparent);
+}
+
+.church-features-track {
+  display: flex;
+  width: max-content;
+  gap: 0.75rem;
+  animation: church-features-loop 28s linear infinite;
+  will-change: transform;
+}
+
+.church-feature-card:hover {
+  z-index: 2;
+  border-color: rgba(103, 232, 249, 0.48);
+  background: linear-gradient(145deg, rgba(24, 70, 122, 0.92), rgba(5, 34, 64, 0.9));
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    0 16px 32px rgba(0, 4, 18, 0.32),
+    0 0 24px rgba(6, 182, 212, 0.09);
+  transform: translateY(-6px) rotate(1deg);
+}
+
+.church-feature-icon {
+  display: inline-grid;
+  width: 2.5rem;
+  height: 2.5rem;
+  place-items: center;
+  border-radius: 0.8rem;
+  background: rgba(37, 99, 235, 0.14);
+  color: #38bdf8;
+}
+
+.church-feature-icon-1 { color: #34d399; background: rgba(16, 185, 129, 0.12); }
+.church-feature-icon-2 { color: #a78bfa; background: rgba(139, 92, 246, 0.12); }
+.church-feature-icon-3 { color: #fb923c; background: rgba(249, 115, 22, 0.12); }
+
+.church-laptop,
+.church-phone {
+  border: 1px solid rgba(125, 211, 252, 0.25);
+  background: linear-gradient(145deg, rgba(17, 52, 94, 0.96), rgba(3, 16, 36, 0.98));
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.12),
+    0 28px 65px rgba(0, 0, 0, 0.42),
+    0 0 40px rgba(14, 165, 233, 0.08);
+}
+
+.church-laptop {
+  transform: perspective(1100px) rotateY(-5deg) rotateX(2deg);
+}
+
+.church-phone {
+  transform: rotate(2deg);
+}
+
+.church-product-preview::after {
+  position: absolute;
+  z-index: -1;
+  right: 4%;
+  bottom: 2%;
+  width: 88%;
+  height: 28%;
+  border-radius: 999px;
+  content: "";
+  background: rgba(6, 182, 212, 0.22);
+  filter: blur(46px);
+}
+
+@keyframes church-features-loop {
+  from { transform: translateX(0); }
+  to { transform: translateX(calc(-50% - 6px)); }
+}
+
+.glass-panel-strong {
+  border: 1px solid rgba(103, 232, 249, 0.2);
+  background:
+    linear-gradient(120deg, rgba(15, 46, 88, 0.78), rgba(5, 25, 52, 0.88) 56%, rgba(7, 64, 70, 0.58));
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    0 30px 80px rgba(0, 6, 20, 0.36);
+  -webkit-backdrop-filter: blur(20px) saturate(140%);
+  backdrop-filter: blur(20px) saturate(140%);
+}
+
+.glass-chip {
+  border: 1px solid rgba(103, 232, 249, 0.24);
+  background: rgba(8, 47, 73, 0.62);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.07);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+}
+
+.legal-glass {
+  color: #cbd5e1;
+}
+
+.legal-glass .text-slate-950,
+.legal-glass .text-slate-900,
+.legal-glass .text-slate-800 {
+  color: #f8fafc;
+}
+
+.legal-glass .text-slate-700,
+.legal-glass .text-slate-600 {
+  color: #cbd5e1;
+}
+
+.legal-glass .border-slate-200 {
+  border-color: rgba(148, 163, 184, 0.18);
+}
+
+.nav-link::after {
+  position: absolute;
+  right: 0;
+  bottom: -10px;
+  left: 0;
+  height: 2px;
+  content: "";
+  background: linear-gradient(90deg, #2563eb, #14b8a6);
+  border-radius: 999px;
+  transform: scaleX(0);
+  transition: transform 180ms ease;
+}
+
+.nav-link:hover {
+  color: #67e8f9;
+}
+
+.nav-link:hover::after {
+  transform: scaleX(1);
+}
+
+.primary-button {
+  background: linear-gradient(110deg, #2563eb 0%, #0891b2 52%, #10b981 100%);
+  box-shadow: 0 12px 30px rgba(14, 116, 144, 0.23);
+  transition: transform 180ms ease, box-shadow 180ms ease, filter 180ms ease;
+}
+
+.primary-button:hover {
+  filter: saturate(1.08) brightness(1.04);
+  box-shadow: 0 16px 36px rgba(14, 116, 144, 0.3);
+  transform: translateY(-2px);
+}
+
+.secondary-dark-button {
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  background: rgba(255, 255, 255, 0.055);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  transition: background 180ms ease, border-color 180ms ease, transform 180ms ease;
+}
+
+.secondary-dark-button:hover {
+  border-color: rgba(103, 232, 249, 0.5);
+  background: rgba(255, 255, 255, 0.11);
+  transform: translateY(-2px);
+}
+
+.hero-surface::after {
+  position: absolute;
+  inset: auto 0 0;
+  height: 1px;
+  content: "";
+  background: linear-gradient(90deg, transparent, rgba(34, 211, 238, 0.45), transparent);
+}
+
+.hero-grid {
+  opacity: 0.22;
+  background-image:
+    linear-gradient(rgba(148, 163, 184, 0.12) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(148, 163, 184, 0.12) 1px, transparent 1px);
+  background-size: 52px 52px;
+  mask-image: linear-gradient(to bottom, black, transparent 95%);
+}
+
+.hero-glow {
+  width: 520px;
+  height: 520px;
+  border-radius: 999px;
+  filter: blur(110px);
+  opacity: 0.22;
+}
+
+.hero-glow-blue {
+  top: -210px;
+  left: -180px;
+  background: #2563eb;
+}
+
+.hero-glow-green {
+  right: -180px;
+  bottom: -300px;
+  background: #10b981;
+}
+
+.hero-gradient-text {
+  background: linear-gradient(100deg, #67e8f9 0%, #38bdf8 42%, #6ee7b7 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.dashboard-shell {
+  transform: perspective(1200px) rotateY(-5deg) rotateX(2deg);
+}
+
+.dashboard-shell::before {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  content: "";
+  background: linear-gradient(130deg, rgba(255, 255, 255, 0.09), transparent 35%);
+}
+
+.dashboard-ring {
+  background: conic-gradient(#10b981 0 38%, #06b6d4 38% 74%, #e2e8f0 74%);
+}
+
+.floating-card {
+  animation: float 5.5s ease-in-out infinite;
+}
+
+.floating-card-alt {
+  animation: float 5.5s ease-in-out 1s infinite reverse;
+}
+
+.section-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: #1d4ed8;
+  font-size: 0.75rem;
+  font-weight: 900;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.section-kicker::before,
+.section-kicker::after {
+  width: 24px;
+  height: 1px;
+  content: "";
+  background: linear-gradient(90deg, #2563eb, #10b981);
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+@media (max-width: 767px) {
+  .hero-grid {
+    background-size: 38px 38px;
+  }
+
+  .brand-watermark-hero {
+    right: -300px;
+    bottom: -230px;
+    width: 650px;
+    opacity: 0.045;
+  }
+
+  .brand-watermark-section {
+    right: -250px;
+    width: 560px;
+    opacity: 0.035;
+  }
+
+  .brand-watermark-wide {
+    width: 700px;
+    opacity: 0.025;
+  }
+
+  .church-showcase-watermark {
+    top: -40px;
+    right: -190px;
+    width: 420px;
+    opacity: 0.04;
+  }
+
+  .church-laptop {
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .church-features-track {
+    animation: none;
+  }
+}

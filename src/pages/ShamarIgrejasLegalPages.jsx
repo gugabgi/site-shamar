@@ -30,7 +30,7 @@ const usePageMetadata = (metadata) => {
 };
 
 const LegalPageLayout = ({ eyebrow, title, updatedAt = "a definir", children }) => (
-  <div className="min-h-screen overflow-x-hidden bg-slate-50 text-slate-900">
+  <div className="site-dark-bg min-h-screen overflow-x-hidden text-slate-100">
     <InternalPageHeader />
 
     <main>
@@ -49,7 +49,7 @@ const LegalPageLayout = ({ eyebrow, title, updatedAt = "a definir", children }) 
         </div>
       </header>
 
-      <div className="mx-auto max-w-4xl px-5 py-12 md:px-8 md:py-16">{children}</div>
+      <div className="legal-glass mx-auto max-w-4xl px-5 py-12 md:px-8 md:py-16">{children}</div>
     </main>
 
     <SiteFooter />
@@ -139,14 +139,14 @@ const LegalMarkdownContent = ({ markdown }) => {
   flushList();
 
   return (
-    <article className="rounded-xl border border-slate-200 bg-white p-6 shadow-lg shadow-slate-200/70 md:p-10">
+    <article className="glass-card rounded-[22px] p-6 md:p-10">
       <div className="space-y-4 text-base leading-8 text-slate-700">{blocks}</div>
     </article>
   );
 };
 
 const PrivacyPolicyContent = () => (
-  <article className="rounded-xl border border-slate-200 bg-white p-6 shadow-lg shadow-slate-200/70 md:p-10">
+  <article className="glass-card rounded-[22px] p-6 md:p-10">
     <div className="space-y-8">
       <div className="space-y-4 text-base leading-8 text-slate-700">
         <p>
@@ -374,7 +374,7 @@ const PrivacyPolicyContent = () => (
 );
 
 const AccountDeletionContent = () => (
-  <article className="rounded-xl border border-slate-200 bg-white p-6 shadow-lg shadow-slate-200/70 md:p-10">
+  <article className="glass-card rounded-[22px] p-6 md:p-10">
     <div className="space-y-8">
       <div className="space-y-4 text-base leading-8 text-slate-700">
         <p>
@@ -506,7 +506,7 @@ export const TermsOfUsePage = () => {
 };
 
 const fieldClass =
-  "mt-2 min-h-12 w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-base text-slate-900 shadow-sm outline-none transition placeholder:text-slate-400 focus:border-blue-700 focus:ring-4 focus:ring-blue-100";
+  "mt-2 min-h-12 w-full rounded-xl border border-cyan-200/20 bg-slate-950/45 px-4 py-3 text-base text-white shadow-inner outline-none transition placeholder:text-slate-500 focus:border-cyan-400 focus:ring-4 focus:ring-cyan-400/10";
 
 export const AccountDeletionPage = () => {
   const [showNotice, setShowNotice] = useState(false);
@@ -524,7 +524,7 @@ export const AccountDeletionPage = () => {
 
         <section
           aria-labelledby="deletion-request-title"
-          className="overflow-hidden rounded-xl border border-cyan-200 bg-white shadow-xl shadow-blue-950/10"
+          className="glass-card overflow-hidden rounded-[22px]"
         >
           <div className="bg-gradient-to-r from-blue-950 via-blue-900 to-emerald-700 px-6 py-7 text-white md:px-10">
             <p className="text-sm font-extrabold uppercase tracking-[0.16em] text-cyan-200">
@@ -600,7 +600,7 @@ export const AccountDeletionPage = () => {
           </form>
         </section>
 
-        <aside className="rounded-xl border border-slate-200 bg-white p-6 text-center shadow-lg shadow-slate-200/70 md:p-8">
+        <aside className="glass-card rounded-[22px] p-6 text-center md:p-8">
           <h2 className="text-xl font-black text-slate-950">Alternativa por e-mail</h2>
           <p className="mt-3 text-sm leading-6 text-slate-600">
             Envie a solicitação preferencialmente usando o mesmo e-mail associado à conta do Shamar Igrejas.
